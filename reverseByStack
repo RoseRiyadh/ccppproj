@@ -1,29 +1,42 @@
 #include <iostream>
-#include <cstring>
+#include <algorithm>
 using namespace std;
 
-void push_char(int &top, string str, char new_string[]){
-    for(int i = 0; i < str.length(); i++){
-        new_string[i] += str[i];
-        top++;
-    }
-}
-void print_chars(int top, char new_string[]){
-    for(int i = (top-1); i >= 0; i--){
-        cout<<new_string[i];
-    }
-}
-
-int main ()
+// Reverse a string using implicit stack (recursion) in C++
+// Note that the string is passed by reference
+void reverse(string &str, int &i, int j)
 {
-    int top = 0;
-    string str;
-    char new_string[255];
-    cout<<"Enter your string:";
-    cin>>str;
+    // base case: j reaches string length
+    if (j == str.length())
+        return;
 
+    reverse(str, i, j + 1);
 
-    push_char(top, str, new_string);
-    print_chars(top, new_string);
+    // swap characters at i'th and j'th index
+    if (i <= j) {
+        swap(str[i], str[j]);
 
+        // advance i by one position,
+        // j index will be taken care by recursion
+        i++;
+    }
+}
+
+// Wrapper function
+void reverse(string &str)
+{
+    int i = 0;
+    reverse(str, i, 0);
+}
+
+// main function
+int main()
+{
+    string str ;
+    cout<<"enter your string";
+    getline(cin, str);
+    reverse(str);
+    cout << str;
+
+    return 0;
 }
