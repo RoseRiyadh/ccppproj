@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+void push_char(int &top, string str, char new_string[]){
+    for(int i = 0; i < str.length(); i++){
+        new_string[i] += str[i];
+        top++;
+    }
+}
+void print_chars(int top, char new_string[]){
+    for(int i = (top-1); i >= 0; i--){
+        cout<<new_string[i];
+    }
+}
+
+int main ()
+{
+    int top = 0;
+    string str;
+    char new_string[255];
+    cout<<"Enter your string:";
+    cin>>str;
+
+
+    push_char(top, str, new_string);
+    print_chars(top, new_string);
+
+}
